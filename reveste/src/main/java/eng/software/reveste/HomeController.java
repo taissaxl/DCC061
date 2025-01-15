@@ -1,8 +1,11 @@
 package eng.software.reveste;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +20,6 @@ public class HomeController {
     public String homePage() {
         return "home"; // Retorna a view home.html
     }
-
     // Rota padrão (redireciona para /home)
     @RequestMapping("/")
     public String home() {
@@ -53,5 +55,19 @@ public class HomeController {
         }
 
         return mv;
+    }
+    // Rota para a página de produtos
+    @GetMapping("/produtos")
+    public String produtosPage(Model model) {
+        // Cria uma lista de produtos (simulação)
+        List<Product> products = new ArrayList<>();
+        products.add(new Product(1, "Camiseta Sustentável", "Camiseta feita com algodão orgânico.", 59.90, "https://exemplo.com/camiseta.jpg"));
+        products.add(new Product(2, "Calça Jeans Reciclada", "Calça jeans feita com materiais reciclados.", 129.90, "https://exemplo.com/calca.jpg"));
+        products.add(new Product(3, "Bolsa de Tecido Reutilizado", "Bolsa feita com tecidos reutilizados.", 89.90, "https://exemplo.com/bolsa.jpg"));
+
+        // Adiciona a lista de produtos ao modelo
+        model.addAttribute("products", products);
+
+        return "produtos"; // Retorna a view produtos.html
     }
 }
