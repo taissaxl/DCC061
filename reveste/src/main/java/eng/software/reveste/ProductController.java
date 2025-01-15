@@ -10,7 +10,7 @@ public class ProductController {
 
     @GetMapping("/products")
     public ModelAndView listProducts() {
-        ModelAndView mv = new ModelAndView("index");
+        ModelAndView mv = new ModelAndView("produtos");
         mv.addObject("products", ProductRepository.getAllProducts());
         return mv;
     }
