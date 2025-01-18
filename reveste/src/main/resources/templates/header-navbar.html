@@ -110,12 +110,16 @@
             </div>
 
             <div class="icons">
-                <button class="btn">
-                    <i class="bi bi-cart" style="color: white;"></i> 
-                </button>
-                <button class="btn">
-                    <i class="bi bi-heart" style="color: white;"></i> 
-                </button>
+                <a th:href="@{/cart}">
+                    <button class="btn">
+                        <i class="bi bi-cart" style="color: white;"></i>
+                    </button>
+                </a>
+                <a th:href="@{/favorites}">
+                    <button class="btn">
+                        <i class="bi bi-heart" style="color: white;"></i>
+                    </button>
+                </a>
                 <a th:href="@{/user}">
                     <button class="btn">
                         <i class="bi bi-person" style="color: white;"></i>
