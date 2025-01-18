@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  h2-database:
+    image: oscarfonts/h2
+    container_name: h2-database
+    ports:
+      - "1521:1521"  # Porta para conexão JDBC
+      - "8082:8082"  # Porta para a interface web do H2
+    volumes:
+      - ./h2-data:/opt/h2-data  # Persistência dos dados
+    environment:
+      - H2_OPTIONS=-web -webAllowOthers -webPort 8082 -tcp -tcpAllowOthers -tcpPort 1521 -ifNotExists
