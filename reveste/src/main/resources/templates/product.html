@@ -13,10 +13,6 @@
             flex-direction: column;
             min-height: 100vh;
         }
-        footer {
-            background-color: #514094;
-            margin-top: auto;
-        }
         .product-container {
             display: flex;
             margin: 20px;
@@ -99,6 +95,21 @@
         .shipping button:hover {
             background-color: #3a2e6e;
         }
+        footer {
+            background-color: #514094;
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -138,9 +149,14 @@
         </div>
     </div>
 
-    <footer class="text-center p-3">
-        <p class="text-white">&copy; 2025 ReVeste. Todos os direitos reservados.</p>
-        <a class="text-white" href="#">Política de Privacidade</a> | <a class="text-white" href="#">Termos de Serviço</a>
+    <footer>
+        <p>&copy; 2025 ReVeste. Todos os direitos reservados.</p>
+        <a href="#">Política de Privacidade</a> | <a href="#">Termos de Serviço</a>
+        <div class="social-icons">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+        </div>
     </footer>
 </body>
 </html>
