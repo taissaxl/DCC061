@@ -76,4 +76,16 @@ public class HomeController {
     public String userPage() {
         return "user"; // Retorna a view user.html
     }
+
+    // Rota para a página do carrinho de compras
+    @GetMapping("/cart")
+    public String cartPage() {
+        return "cart"; // Retorna a view cart.html
+    }
+
+    // Rota para a página de favoritos
+    @GetMapping("/favorites")
+    public String favoritesPage() {
+        return "favorites"; // Retorna a view favorites.html
+    }
 }
