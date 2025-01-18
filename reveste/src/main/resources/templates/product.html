@@ -11,17 +11,11 @@
             background-color: #f8f9fa;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; 
+            min-height: 100vh;
         }
         footer {
-            background-color: #514094; 
-            margin-top: auto; 
-        }
-        .input-group {
-            width: 300px; 
-        }
-        .search-button {
-            border: 1px solid #f8f9fa; 
+            background-color: #514094;
+            margin-top: auto;
         }
         .product-container {
             display: flex;
@@ -108,6 +102,7 @@
     </style>
 </head>
 <body>
+    <!-- Inclui o header e a navbar -->
     <div th:replace="~{header-navbar}"></div>
 
     <div class="container">
@@ -116,16 +111,22 @@
                 <img th:src="${product.imageUrl}" alt="Imagem do Produto" class="product-image">
             </div>
             <div class="product-details">
+ 
                 <h1 class="product-title" th:text="${product.name}"></h1>
-                <p class="product-price" th:text="'R$ ' + ${product.price}"></p>
+
+                <p class="product-price" th:text="'R$ ' + ${#numbers.formatDecimal(product.price, 1, 2)}"></p>
+
                 <p class="product-installments" th:text="'3x de R$ ' + ${#numbers.formatDecimal(product.price / 3, 1, 2)} + ' sem juros'"></p>
+
                 <div class="product-options">
                     <label for="size">Tamanho</label>
                     <select id="size">
-                        <option>Único</option> 
+                        <option>Único</option>
                     </select>
                 </div>
+
                 <button class="add-to-cart">Adicionar à sacola</button>
+
                 <div class="shipping">
                     <label for="cep">Consulte o frete</label>
                     <div>
@@ -136,8 +137,9 @@
             </div>
         </div>
     </div>
+
     <footer class="text-center p-3">
-        <p class="text-white">&copy; 2023 ReVeste. Todos os direitos reservados.</p>
+        <p class="text-white">&copy; 2025 ReVeste. Todos os direitos reservados.</p>
         <a class="text-white" href="#">Política de Privacidade</a> | <a class="text-white" href="#">Termos de Serviço</a>
     </footer>
 </body>
