@@ -14,28 +14,30 @@
             min-height: 100vh;
             font-family: 'Poppins', sans-serif;
         }
-        .container {
-            margin-top: 50px;
-            width: 80%;
-            max-width: 500px;
+        .main-container {
+            margin-top: 100px;
+            width: 90%;
+            max-width: 1200px;
             display: flex;
-            flex-direction: column;
-            align-items: center; /* Centraliza o conteúdo horizontalmente */
+            gap: 20px;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: flex-start;
         }
         .user-info {
             background-color: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            width: 100%; /* Ocupa 100% da largura do container */
-            text-align: center; /* Centraliza o texto */
-            position: relative; /* Para posicionar o botão de editar */
+            width: 500px;
+            position: relative;
         }
         .user-info h2 {
             color: #514094;
             font-weight: bold;
             margin-bottom: 20px;
+            text-align: center;
         }
         .user-info p {
             margin: 10px 0;
@@ -44,6 +46,7 @@
             font-size: 4rem;
             color: #514094;
             margin-bottom: 15px;
+            text-align: center;
         }
         .edit-button {
             position: absolute;
@@ -62,7 +65,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            width: 100%; /* Ocupa 100% da largura do container */
+            width: 300px;
         }
         .user-menu a {
             display: flex;
@@ -73,7 +76,7 @@
             text-decoration: none;
             border-radius: 8px;
             transition: background-color 0.3s ease;
-            width: 100%; /* Ocupa 100% da largura do menu */
+            width: 100%;
         }
         .user-menu a:hover {
             background-color: #3a2e6e;
@@ -82,8 +85,31 @@
             margin-right: 10px;
             font-size: 1.2rem;
         }
-        .container, .user-menu{
-            width: 500px;
+        .section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .section h3 {
+            color: #514094;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .section p {
+            margin: 10px 0;
+        }
+        .section button {
+            background-color: #94B051;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .section button:hover {
+            background-color: #7a9342;
         }
         footer {
             background-color: #514094;
@@ -105,24 +131,20 @@
 <body>
     <div th:replace="~{header-navbar}"></div>
 
-    <div class="container">
+    <div class="main-container">
         <div class="user-info">
-            <!-- Ícone de usuário (no lugar da foto) -->
             <div class="user-icon">
                 <i class="bi bi-person-circle"></i>
             </div>
-            <!-- Botão de editar informações -->
             <button class="edit-button" onclick="editarInformacoes()">
                 <i class="bi bi-pencil"></i>
             </button>
-            <!-- Informações do usuário -->
             <h2 th:text="'Olá, ' + ${userName} + '!'"></h2>
             <p><strong>E-mail:</strong> <span th:text="${userEmail}">user@email.com</span></p>
             <p><strong>Login:</strong> <span th:text="${userLogin}">user123</span></p>
             <p><strong>Endereço:</strong> <span th:text="${userAddress}">Rua das Flores, 185</span></p>
         </div>
 
-        <!-- Menu de usuário -->
         <div class="user-menu">
             <a href="/meus-pedidos">
                 <i class="bi bi-bag"></i> Meus Pedidos
@@ -139,14 +161,32 @@
         </div>
     </div>
 
-    <!-- Rodapé -->
+    <div class="main-container">
+        <div class="section">
+            <h3><i class="bi bi-tag"></i> Cupons e Promoções</h3>
+            <p><strong>CUPOM10</strong> - 10% de desconto em sua próxima compra.</p>
+            <button>Usar Cupom</button>
+        </div>
+
+        <div class="section">
+            <h3><i class="bi bi-truck"></i> Acompanhamento do Produto</h3>
+            <p>Seu pedido #1234 está a caminho. Previsão de entrega: 25/10/2025.</p>
+            <button>Detalhes</button>
+        </div>
+
+        <div class="section">
+            <h3><i class="bi bi-star"></i> Avaliações e Feedback</h3>
+            <p>Você comprou <strong>Camiseta Sustentável</strong>. Deixe sua avaliação!</p>
+            <button>Avaliar Produto</button>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2025 ReVeste. Todos os direitos reservados.</p>
         <a href="#">Política de Privacidade</a> | <a href="#">Termos de Serviço</a>
     </footer>
 
     <script>
-        // Função para editar informações
         function editarInformacoes() {
             alert("Funcionalidade de edição em desenvolvimento!");
         }
