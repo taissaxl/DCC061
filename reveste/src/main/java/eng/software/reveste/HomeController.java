@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
+    @Autowired
+    private ProductRepository productRepository;
+    
     // Rota para a página inicial (home.html)
     @GetMapping("/home")
     public String homePage() {
@@ -59,15 +63,17 @@ public class HomeController {
     // Rota para a página de produtos
     @GetMapping("/produtos")
     public String produtosPage(Model model) {
-        // Cria uma lista de produtos (simulação)
-        List<Product> products = new ArrayList<>();
-        products.add(new Product(1, "Camiseta Sustentável", "Camiseta feita com algodão orgânico.", 59.90, "https://exemplo.com/camiseta.jpg"));
-        products.add(new Product(2, "Calça Jeans Reciclada", "Calça jeans feita com materiais reciclados.", 129.90, "https://exemplo.com/calca.jpg"));
-        products.add(new Product(3, "Bolsa de Tecido Reutilizado", "Bolsa feita com tecidos reutilizados.", 89.90, "https://exemplo.com/bolsa.jpg"));
-
+        // Busca todos os produtos do banco de dados usando o ProductRepository
+        List<Product> products = productRepository.findAll();
+    
         // Adiciona a lista de produtos ao modelo
         model.addAttribute("products", products);
-
+    
         return "produtos"; // Retorna a view produtos.html
+    }
+
+    @GetMapping("/user")
+    public String userPage() {
+        return "user"; // Retorna a view user.html
     }
 }
