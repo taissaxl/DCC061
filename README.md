@@ -8,6 +8,10 @@ Projeto realizado durante a disciplina DCC061 - Engenharia de Software.
 - Em JDBC URL, cole jdbc:h2:tcp://localhost:1521//opt/h2-data/ecommerce
 - Clique em conectar
 
+# Como desligar o servidor do banco de dados
+- Certifique-se que você está na main
+- Execute o comando sudo docker-compose down ou docker-compose down
+
 # Como rodar o servidor do sistema
 - Em RevesteApplication, clique em Run, que fica logo acima de 	
     "public static void main(String[] args) {
