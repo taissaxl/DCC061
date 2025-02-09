@@ -91,4 +91,9 @@ public class HomeController {
     public String favoritesPage() {
         return "favorites"; // Retorna a view favorites.html
     }
+
+    @GetMapping("/register")
+    public String registerUser() {
+        return "register.html";
+    }
 }
