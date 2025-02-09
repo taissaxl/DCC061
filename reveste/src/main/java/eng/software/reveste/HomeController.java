@@ -20,6 +20,7 @@ public class HomeController {
 
     @Autowired
     private ProductRepository productRepository;
+
     
     // Rota para a página inicial (home.html)
     @GetMapping("/home")
@@ -29,7 +30,7 @@ public class HomeController {
     // Rota padrão (redireciona para /home)
     @RequestMapping("/")
     public String home() {
-        return "redirect:/home"; // Redireciona para a página inicial
+        return "redirect:/login"; // Redireciona para a página inicial
     }
 
     // Rota para a página de login

@@ -17,7 +17,7 @@ public class ProductController {
 
     // Endpoint para exibir os detalhes de um produto
     @GetMapping("/products/{id}")
-    public String productDetails(@PathVariable int id, Model model) {
+    public String productDetails(@PathVariable Long id, Model model) {
         // Busca o produto pelo ID
         Product product = productRepository.findById(id).orElse(null);
 

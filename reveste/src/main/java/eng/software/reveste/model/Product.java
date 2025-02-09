@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Product {
     @Id // Indica que este campo é a chave primária
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Gera o ID automaticamente
-    private int id;
+    private Long id;
     private String name;
     private String description;
     private double price;
@@ -28,11 +28,11 @@ public class Product {
     }
 
     // Getters e Setters (obrigatórios para JPA)
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

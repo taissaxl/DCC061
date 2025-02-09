@@ -11,31 +11,37 @@ import jakarta.persistence.Id;
 public class User {
     @Id //PK
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Gera o ID automaticamente
-    private int id;
+    private Long id;
     private String name;
     private String lastName;
     private String email;
     private String cpf;
     private Date dateBirth;
+    private String username;
     private String password;
 
     //Construtor padrão (obrigatório para JPA)
     public User() {
     }
 
-    public User(int id, String name, String lastName, String cpf, Date dateBirth, String password) {
+    public User(Long id, String name, String lastName, String email, String cpf, Date dateBirth, String username,
+            String password) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
+        this.email = email;
         this.cpf = cpf;
         this.dateBirth = dateBirth;
+        this.username = username;
         this.password = password;
     }
+
+
     //Getters e Setters
-    public int getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getName() {
@@ -67,6 +73,12 @@ public class User {
     }
     public void setDateBirth(Date dateBirth) {
         this.dateBirth = dateBirth;
+    }
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
     public String getPassword() {
         return password;
