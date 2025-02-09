@@ -2,46 +2,50 @@
     background-color: #514094;
     padding: 0.5rem 1rem;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
 }
+
 .header-custom .logo-container {
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
+
 .header-custom .logo-container img {
-    width: 50px; 
-    height: auto; 
+    width: 50px;
+    height: auto;
 }
+
 .header-custom h1 {
-    font-family: 'Montserrat', sans-serif; 
-    font-size: 2.5rem; 
-    font-weight: bold; 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: bold;
     color: white;
-    margin: 0; 
+    margin: 0;
 }
+
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1200px; 
-    padding: 0 20px; 
+    max-width: 1200px;
+    padding: 0 20px;
 }
 
 .header-custom .input-group {
-    width: 550px; 
-    margin: 0 auto; 
+    width: 550px;
+    margin: 0 auto;
 }
 
 .header-custom .icons {
     display: flex;
-    gap: 10px; 
+    gap: 10px;
 }
 
 .header-custom .icons .btn {
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
 }
 
 /* Estilo da navbar */
@@ -52,7 +56,7 @@
 
 .navbar-custom .navbar-nav {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     width: 100%;
 }
 
@@ -78,3 +82,43 @@
 .navbar-custom .dropdown-item:hover {
     background-color: #3a2e6e;
 }
+
+/* Estilização do menu suspenso do perfil */
+.profile-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-menu .dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #514094;
+    min-width: 150px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    list-style: none;
+    padding: 10px 0;
+    z-index: 10;
+}
+
+.profile-menu .dropdown li {
+    padding: 8px 15px;
+}
+
+.profile-menu .dropdown li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.profile-menu .dropdown li:hover {
+    background-color: #3a2e6e;
+}
+
+/* Exibir o menu ao passar o mouse */
+.profile-menu:hover .dropdown {
+    display: block;
+}
+
+
