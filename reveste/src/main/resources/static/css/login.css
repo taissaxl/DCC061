@@ -1,0 +1,36 @@
+body {
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+.container {
+    margin-top: 50px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+}
+h1 {
+    text-align: center; 
+}
+.form-container {
+    border: 1px solid #ccc; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 20px; 
+}
+footer {
+    background-color: #514094;
+    margin-top: auto;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+footer a:hover {
+    text-decoration: underline;
+}
