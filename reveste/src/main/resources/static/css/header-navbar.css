@@ -1,0 +1,80 @@
+.header-custom {
+    background-color: #514094;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+.header-custom .logo-container {
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+.header-custom .logo-container img {
+    width: 50px; 
+    height: auto; 
+}
+.header-custom h1 {
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 2.5rem; 
+    font-weight: bold; 
+    color: white;
+    margin: 0; 
+}
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px; 
+    padding: 0 20px; 
+}
+
+.header-custom .input-group {
+    width: 550px; 
+    margin: 0 auto; 
+}
+
+.header-custom .icons {
+    display: flex;
+    gap: 10px; 
+}
+
+.header-custom .icons .btn {
+    font-size: 1.5rem; 
+}
+
+/* Estilo da navbar */
+.navbar-custom {
+    background-color: #514094;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-custom .navbar-nav {
+    display: flex;
+    justify-content: center; 
+    width: 100%;
+}
+
+.navbar-custom .navbar-nav .nav-link {
+    color: white;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-custom .navbar-nav .nav-link:hover {
+    background-color: #3a2e6e;
+    border-radius: 4px;
+}
+
+.navbar-custom .dropdown-menu {
+    background-color: #514094;
+    border: none;
+}
+
+.navbar-custom .dropdown-item {
+    color: white;
+}
+
+.navbar-custom .dropdown-item:hover {
+    background-color: #3a2e6e;
+}
