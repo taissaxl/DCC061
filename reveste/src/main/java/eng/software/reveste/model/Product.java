@@ -1,4 +1,4 @@
-package eng.software.reveste;
+package eng.software.reveste.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

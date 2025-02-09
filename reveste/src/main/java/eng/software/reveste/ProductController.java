@@ -6,6 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import eng.software.reveste.model.Product;
+import eng.software.reveste.repository.ProductRepository;
+
 @Controller // Alterado de @RestController para @Controller
 public class ProductController {
 
