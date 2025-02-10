@@ -14,34 +14,34 @@
 
     <div class="container form-container">
         <h1><i class="bi bi-person-plus" style="font-size: 2rem;"></i><br>Cadastro</h1>
-        <form action="/login" method="get">
+        <form th:action="@{/verificaCadastro}" method="post" th:object="${user}">
             <div class="mb-3">
                 <label for="name" class="form-label">Nome:</label>
-                <input type="text" id="name" name="name" class="form-control" required>
+                <input type="text" id="name" th:field="*{name}" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="lastName" class="form-label">Sobrenome:</label>
-                <input type="text" id="lastName" name="lastName" class="form-control" required>
+                <input type="text" id="lastName" th:field="*{lastName}" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email:</label>
-                <input type="email" id="email" name="email" class="form-control" required>
+                <input type="email" id="email" th:field="*{email}" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="cpf" class="form-label">CPF:</label>
-                <input type="text" id="cpf" name="cpf" class="form-control" required>
+                <input type="text" id="cpf" th:field="*{cpf}" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="dateBirth" class="form-label">Data de Nascimento:</label>
-                <input type="date" id="dateBirth" name="dateBirth" class="form-control" required>
+                <input type="date" id="dateBirth" th:field="*{dateBirth}" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="username" class="form-label">Login:</label>
-                <input type="text" id="username" name="username" class="form-control" required>
+                <input type="text" id="username" th:field="*{username}" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Senha:</label>
-                <input type="password" id="password" name="password" class="form-control" required>
+                <input type="password" id="password" th:field="*{password}" class="form-control" required>
             </div>
             <button type="submit" class="btn" style="background-color: #4CAF50; color: white;">Confirmar</button>
         </form>

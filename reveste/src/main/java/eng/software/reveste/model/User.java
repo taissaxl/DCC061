@@ -6,8 +6,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "users") // Mudando o nome da tabela (pois 'user' é palavra reservada)
 public class User {
     @Id //PK
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Gera o ID automaticamente
@@ -22,11 +24,11 @@ public class User {
 
     //Construtor padrão (obrigatório para JPA)
     public User() {
+        this(null,null,null,null,null,null,null);
     }
 
-    public User(Long id, String name, String lastName, String email, String cpf, LocalDate dateBirth, String username,
+    public User(String name, String lastName, String email, String cpf, LocalDate dateBirth, String username,
             String password) {
-        this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.email = email;

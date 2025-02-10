@@ -6,14 +6,18 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import eng.software.reveste.model.Product;
+import eng.software.reveste.model.User;
 import eng.software.reveste.repository.ProductRepository;
+import eng.software.reveste.repository.UserRepository;
 
 @Controller
 public class HomeController {
@@ -21,6 +25,8 @@ public class HomeController {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private UserRepository userRepository;
     
     // Rota para a página inicial (home.html)
     @GetMapping("/home")
@@ -92,8 +98,37 @@ public class HomeController {
         return "favorites"; // Retorna a view favorites.html
     }
 
+    // 2 endopoints iguais, pois um é de GET (ir à página) e o outro POST (validar cadastro do parâmetro)
     @GetMapping("/register")
-    public String registerUser() {
-        return "register.html";
+    public ModelAndView registerUser1() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("register.html");
+        mv.addObject("user", new User());
+        return mv;
+    }
+
+    @PostMapping("/register")
+    public ModelAndView registerUser2(User user, BindingResult binding){
+        ModelAndView mv = new ModelAndView();
+
+        if(binding.hasErrors()){
+            mv.setViewName("register");
+            return mv;
+        }
+        mv.setViewName("redirect:/login");
+        mv.addObject("user", user);
+        userRepository.save(user);
+
+        return mv;
+    }
+
+    // Só pra testar e ver os usuarios ligados (digitar a url no navegador pra visualizar)
+    @RequestMapping({"/listaUsuarios"})
+    public ModelAndView listaUsuarios() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("usersTeste.html");
+        List<User> lu = userRepository.findAll();
+        mv.addObject("usuarios",lu);
+        return mv;
     }
 }
