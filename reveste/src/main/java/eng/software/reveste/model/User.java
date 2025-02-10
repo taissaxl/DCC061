@@ -1,6 +1,6 @@
 package eng.software.reveste.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +16,7 @@ public class User {
     private String lastName;
     private String email;
     private String cpf;
-    private Date dateBirth;
+    private LocalDate dateBirth;
     private String username;
     private String password;
 
@@ -24,7 +24,7 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String name, String lastName, String email, String cpf, Date dateBirth, String username,
+    public User(Long id, String name, String lastName, String email, String cpf, LocalDate dateBirth, String username,
             String password) {
         this.id = id;
         this.name = name;
@@ -68,10 +68,10 @@ public class User {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    public Date getDateBirth() {
+    public LocalDate getDateBirth() {
         return dateBirth;
     }
-    public void setDateBirth(Date dateBirth) {
+    public void setDateBirth(LocalDate dateBirth) {
         this.dateBirth = dateBirth;
     }
     public String getUsername() {
