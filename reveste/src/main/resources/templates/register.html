@@ -29,7 +29,7 @@
             </div>
             <div class="mb-3">
                 <label for="cpf" class="form-label">CPF:</label>
-                <input type="text" id="cpf" th:field="*{cpf}" class="form-control" required>
+                <input type="text" id="cpf" th:field="*{cpf}" class="form-control" required pattern="\d*" inputmode="numeric">
             </div>
             <div class="mb-3">
                 <label for="dateBirth" class="form-label">Data de Nascimento:</label>
@@ -43,7 +43,7 @@
                 <label for="password" class="form-label">Senha:</label>
                 <input type="password" id="password" th:field="*{password}" class="form-control" required>
             </div>
-            <button type="submit" class="btn" style="background-color: #4CAF50; color: white;">Confirmar</button>
+            <button type="submit" class="btn-confirm">Confirmar</button>
         </form>
     </div>
     
