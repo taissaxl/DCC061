@@ -22,13 +22,25 @@ public class User {
     private String username;
     private String password;
 
+    private String cep;
+    private String endereco;
+    private String numero;
+    private String complemento;
+    private String cidade;
+    private String estado;
+
+    
+
     //Construtor padrão (obrigatório para JPA)
     public User() {
-        this(null,null,null,null,null,null,null);
+        this(null,null,null,null,null,null,null,null,null,null,null,null,null,null);
     }
 
-    public User(String name, String lastName, String email, String cpf, LocalDate dateBirth, String username,
-            String password) {
+
+    public User(Long id, String name, String lastName, String email, String cpf, LocalDate dateBirth, String username,
+            String password, String cep, String endereco, String numero, String complemento, String cidade,
+            String estado) {
+        this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
@@ -36,7 +48,15 @@ public class User {
         this.dateBirth = dateBirth;
         this.username = username;
         this.password = password;
+        this.cep = cep;
+        this.endereco = endereco;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.cidade = cidade;
+        this.estado = estado;
     }
+
+
 
 
     //Getters e Setters
@@ -89,5 +109,52 @@ public class User {
         this.password = password;
     }
 
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
     
 }
