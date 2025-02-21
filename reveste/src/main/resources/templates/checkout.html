@@ -18,72 +18,78 @@
             <div class="col-md-8">
                 <div class="checkout-section">
                     <h3><i class="bi bi-geo-alt"></i> Endereço de Entrega</h3>
-                    <form>
+                    <form th:action="@{/checkout}" th:object="${checkoutDTO}" method="post">
                         <div class="form-group">
                             <label for="nome">Nome Completo</label>
-                            <input type="text" id="nome" class="form-control" required>
+                            <input type="text" id="nome" th:field="*{nome}" class="form-control">
+                            <small class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></small>
                         </div>
                         <div class="form-group">
                             <label for="cep">CEP</label>
-                            <input type="text" id="cep" class="form-control" required>
+                            <input type="text" id="cep" th:field="*{cep}" class="form-control">
+                            <small class="text-danger" th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}"></small>
                         </div>
                         <div class="form-group">
                             <label for="endereco">Endereço</label>
-                            <input type="text" id="endereco" class="form-control" required>
+                            <input type="text" id="endereco" th:field="*{endereco}" class="form-control">
+                            <small class="text-danger" th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}"></small>
                         </div>
                         <div class="form-group">
                             <label for="numero">Número</label>
-                            <input type="text" id="numero" class="form-control" required>
+                            <input type="text" id="numero" th:field="*{numero}" class="form-control">
+                            <small class="text-danger" th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}"></small>
                         </div>
                         <div class="form-group">
                             <label for="complemento">Complemento</label>
-                            <input type="text" id="complemento" class="form-control">
+                            <input type="text" id="complemento" th:field="*{complemento}" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="cidade">Cidade</label>
-                            <input type="text" id="cidade" class="form-control" required>
+                            <input type="text" id="cidade" th:field="*{cidade}" class="form-control">
+                            <small class="text-danger" th:if="${#fields.hasErrors('cidade')}" th:errors="*{cidade}"></small>
                         </div>
                         <div class="form-group">
                             <label for="estado">Estado</label>
-                            <select id="estado" class="form-control" required>
+                            <select id="estado" th:field="*{estado}" class="form-control">
                                 <option value="">Selecione</option>
                                 <option value="SP">São Paulo</option>
                                 <option value="RJ">Rio de Janeiro</option>
                                 <option value="MG">Minas Gerais</option>
                                 <!-- Adicione outros estados -->
                             </select>
+                            <small class="text-danger" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></small>
                         </div>
-                    </form>
-                </div>
-
-                <div class="checkout-section">
-                    <h3><i class="bi bi-credit-card"></i> Forma de Pagamento</h3>
-                    <form>
                         <div class="form-group">
                             <label for="cartao">Número do Cartão</label>
-                            <input type="text" id="cartao" class="form-control" required>
+                            <input type="text" id="cartao" th:field="*{cartao}" class="form-control">
+                            <small class="text-danger" th:if="${#fields.hasErrors('cartao')}" th:errors="*{cartao}"></small>
                         </div>
                         <div class="form-group">
                             <label for="validade">Validade (MM/AA)</label>
-                            <input type="text" id="validade" class="form-control" required>
+                            <input type="text" id="validade" th:field="*{validade}" class="form-control">
+                            <small class="text-danger" th:if="${#fields.hasErrors('validade')}" th:errors="*{validade}"></small>
                         </div>
                         <div class="form-group">
                             <label for="cvv">CVV</label>
-                            <input type="text" id="cvv" class="form-control" required>
+                            <input type="text" id="cvv" th:field="*{cvv}" class="form-control">
+                            <small class="text-danger" th:if="${#fields.hasErrors('cvv')}" th:errors="*{cvv}"></small>
                         </div>
                         <div class="form-group">
                             <label for="titular">Nome do Titular</label>
-                            <input type="text" id="titular" class="form-control" required>
+                            <input type="text" id="titular" th:field="*{titular}" class="form-control">
+                            <small class="text-danger" th:if="${#fields.hasErrors('titular')}" th:errors="*{titular}"></small>
                         </div>
                         <div class="form-group">
                             <label for="parcelas">Parcelamento</label>
-                            <select id="parcelas" class="form-control" required>
+                            <select id="parcelas" th:field="*{parcelas}" class="form-control">
                                 <option value="1">1x sem juros</option>
                                 <option value="2">2x sem juros</option>
                                 <option value="3">3x sem juros</option>
                                 <!-- Adicione outras opções de parcelamento -->
                             </select>
+                            <small class="text-danger" th:if="${#fields.hasErrors('parcelas')}" th:errors="*{parcelas}"></small>
                         </div>
+                        <button type="submit" class="btn btn-primary btn-block">Confirmar Compra</button>
                     </form>
                 </div>
             </div>
@@ -104,7 +110,6 @@
                         <p><strong>Total:</strong></p>
                         <p><strong>R$ 145,00</strong></p>
                     </div>
-                    <button class="btn btn-primary btn-block">Confirmar Compra</button>
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import javax.validation.Valid;
 
 import eng.software.reveste.model.Product;
 import eng.software.reveste.model.User;
@@ -136,5 +137,31 @@ public class HomeController {
     @RequestMapping("/checkout")
     public String checkout() {
         return "checkout.html";
+    }
+
+    // Rota para exibir a página de checkout
+    @GetMapping("/checkout")
+    public String checkoutPage(Model model) {
+        model.addAttribute("checkoutDTO", new CheckoutDTO());
+        return "checkout";
+    }
+
+    // Rota para processar o formulário de checkout
+    @PostMapping("/checkout")
+    public String processCheckout(@Valid @ModelAttribute("checkoutDTO") CheckoutDTO checkoutDTO, BindingResult bindingResult, Model model) {
+        // Verifica se há erros de validação
+        if (bindingResult.hasErrors()) {
+            // Se houver erros, retorna para a página de checkout com as mensagens de erro
+            return "checkout";
+        }
+
+        // Se não houver erros, redireciona para a página de confirmação
+        return "redirect:/checkout-confirmation";
+    }
+
+    // Rota para a página de confirmação de compra
+    @RequestMapping("/checkout-confirmation")
+    public String checkoutConfirmation() {
+        return "checkout-confirmation";
     }
 }
