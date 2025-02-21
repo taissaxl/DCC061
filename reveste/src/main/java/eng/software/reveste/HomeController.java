@@ -131,4 +131,10 @@ public class HomeController {
         mv.addObject("usuarios",lu);
         return mv;
     }
+
+    // Rota para a página de compra
+    @RequestMapping("/checkout")
+    public String checkout() {
+        return "checkout.html";
+    }
 }
