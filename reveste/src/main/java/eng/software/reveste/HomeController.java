@@ -1,5 +1,6 @@
 package eng.software.reveste;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -28,12 +29,13 @@ public class HomeController {
 
     @Autowired
     private UserRepository userRepository;
-    
+
     // Rota para a página inicial (home.html)
     @GetMapping("/home")
     public String homePage() {
         return "home"; // Retorna a view home.html
     }
+
     // Rota padrão (redireciona para /home)
     @RequestMapping("/")
     public String home() {
@@ -70,20 +72,30 @@ public class HomeController {
 
         return mv;
     }
+
     // Rota para a página de produtos
     @GetMapping("/produtos")
     public String produtosPage(Model model) {
         // Busca todos os produtos do banco de dados usando o ProductRepository
         List<Product> products = productRepository.findAll();
-    
+
         // Adiciona a lista de produtos ao modelo
         model.addAttribute("products", products);
-    
+
         return "produtos"; // Retorna a view produtos.html
     }
 
     @GetMapping("/user")
-    public String userPage() {
+    public String userPage(Model model, Principal principal) {
+        // Obtém o nome do usuário autenticado
+        String username = principal.getName();
+
+        // Busca o usuário no banco de dados
+        User user = userRepository.findByUsername(username);
+
+        // Adiciona ao modelo
+        model.addAttribute("user", user);
+
         return "user"; // Retorna a view user.html
     }
 
@@ -99,7 +111,8 @@ public class HomeController {
         return "favorites"; // Retorna a view favorites.html
     }
 
-    // 2 endopoints iguais, pois um é de GET (ir à página) e o outro POST (validar cadastro do parâmetro)
+    // 2 endopoints iguais, pois um é de GET (ir à página) e o outro POST (validar
+    // cadastro do parâmetro)
     @GetMapping("/register")
     public ModelAndView registerUser1() {
         ModelAndView mv = new ModelAndView();
@@ -109,10 +122,10 @@ public class HomeController {
     }
 
     @PostMapping("/register")
-    public ModelAndView registerUser2(User user, BindingResult binding){
+    public ModelAndView registerUser2(User user, BindingResult binding) {
         ModelAndView mv = new ModelAndView();
 
-        if(binding.hasErrors()){
+        if (binding.hasErrors()) {
             mv.setViewName("register");
             return mv;
         }
@@ -123,13 +136,14 @@ public class HomeController {
         return mv;
     }
 
-    // Só pra testar e ver os usuarios ligados (digitar a url no navegador pra visualizar)
-    @RequestMapping({"/listaUsuarios"})
+    // Só pra testar e ver os usuarios ligados (digitar a url no navegador pra
+    // visualizar)
+    @RequestMapping({ "/listaUsuarios" })
     public ModelAndView listaUsuarios() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("usersTeste.html");
         List<User> lu = userRepository.findAll();
-        mv.addObject("usuarios",lu);
+        mv.addObject("usuarios", lu);
         return mv;
     }
 
@@ -148,7 +162,8 @@ public class HomeController {
 
     // Rota para processar o formulário de checkout
     @PostMapping("/checkout")
-    public String processCheckout(@Valid @ModelAttribute("checkoutDTO") CheckoutDTO checkoutDTO, BindingResult bindingResult, Model model) {
+    public String processCheckout(@Valid @ModelAttribute("checkoutDTO") CheckoutDTO checkoutDTO,
+            BindingResult bindingResult, Model model) {
         // Verifica se há erros de validação
         if (bindingResult.hasErrors()) {
             // Se houver erros, retorna para a página de checkout com as mensagens de erro
@@ -163,5 +178,10 @@ public class HomeController {
     @RequestMapping("/checkout-confirmation")
     public String checkoutConfirmation() {
         return "checkout-confirmation";
+    }
+
+    @GetMapping("/logout")
+    public String logout(){
+        return "redirect:/login";
     }
 }

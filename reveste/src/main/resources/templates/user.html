@@ -19,9 +19,9 @@
             <button class="edit-button" onclick="editarInformacoes()">
                 <i class="bi bi-pencil"></i>
             </button>
-            <h2 th:text="'Olá, ' + ${userName} + '!'"></h2>
-            <p><strong>E-mail:</strong> <span th:text="${userEmail}">user@email.com</span></p>
-            <p><strong>Login:</strong> <span th:text="${userLogin}">user123</span></p>
+            <h2>Olá <span th:text="${user.name}"></span></h2>
+            <p><strong>E-mail:</strong> <span th:text="${user.email}"></span></p>
+            <p><strong>Login:</strong> <span th:text="${user.username}"></span></p>
             <p><strong>Endereço:</strong> <span th:text="${userAddress}">Rua das Flores, 185</span></p>
         </div>
 
