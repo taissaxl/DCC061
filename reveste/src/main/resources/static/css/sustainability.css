@@ -1,0 +1,68 @@
+#sustainability-container {
+    margin-top: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+#sustainability-container h1,
+#sustainability-container h2 {
+    color: #514094;
+    text-align: center;
+}
+#sustainability-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+#sustainability-container h2 {
+    font-size: 2rem;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+#sustainability-container p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    text-align: justify;
+}
+#sustainability-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+#sustainability-container ul li {
+    background-color: #f8f9fa;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+#sustainability-container ul li i {
+    margin-right: 10px;
+    color: #94B051;
+}
+.sustainability-image {
+    text-align: center;
+    margin: 40px 0;
+}
+.sustainability-image img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+footer {
+    background-color: #514094;
+    margin-top: auto;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+footer a:hover {
+    text-decoration: underline;
+}
