@@ -29,6 +29,6 @@ public class ProductController {
             return "redirect:/error";
         }
 
-        return "product"; // Retorna a view product.html
+        return "product-information"; // Retorna a view product.html
     }
 }

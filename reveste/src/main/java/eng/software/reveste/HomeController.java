@@ -82,7 +82,7 @@ public class HomeController {
         // Adiciona a lista de produtos ao modelo
         model.addAttribute("products", products);
 
-        return "produtos"; // Retorna a view produtos.html
+        return "product";
     }
 
     // Rota para a página de dicas
@@ -189,5 +189,15 @@ public class HomeController {
     @GetMapping("/logout")
     public String logout(){
         return "redirect:/login";
+    }
+
+    @GetMapping("/order-confirmation")
+    public String orderConfirmation() {
+        return "order-confirmation"; 
+    }
+
+    @GetMapping("/sustainability")
+    public String sustainabilityPage() {
+        return "sustainability";
     }
 }

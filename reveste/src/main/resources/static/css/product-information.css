@@ -1,0 +1,122 @@
+body {
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.product-container {
+    display: flex;
+    margin: 20px;
+    gap: 20px;
+}
+.product-images {
+    flex: 1;
+}
+.product-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.product-details {
+    flex: 1;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.product-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+.product-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #514094;
+    margin-bottom: 20px;
+}
+.product-installments {
+    color: #555;
+    margin-bottom: 20px;
+}
+.product-options {
+    margin-bottom: 20px;
+}
+.product-options label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.product-options select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+.add-to-cart {
+    width: 100%;
+    padding: 10px;
+    background-color: #514094;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.add-to-cart:hover {
+    background-color: #3a2e6e;
+}
+.shipping {
+    margin-top: 20px;
+}
+.shipping input {
+    width: calc(100% - 60px);
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+.shipping button {
+    width: 50px;
+    padding: 10px;
+    background-color: #514094;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.shipping button:hover {
+    background-color: #3a2e6e;
+}
+.btn-buy {
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 10px 0;
+    font-size: 1.2rem;
+    background-color: #94B051 !important; 
+    color: white !important;
+    font-weight: bolder !important;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+.btn-buy:hover {
+    background-color: #7a9342 !important; 
+}
+footer {
+    background-color: #514094;
+    margin-top: auto;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+footer a:hover {
+    text-decoration: underline;
+}
