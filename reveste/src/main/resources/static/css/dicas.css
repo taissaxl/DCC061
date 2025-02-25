@@ -1,0 +1,53 @@
+body {
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.tips-section {
+    background-color: #f8f9fa;
+    padding: 40px 0;
+    text-align: center;
+}
+
+
+.tips-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #514094;
+}
+.tips-section p {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.tips-section .btn {
+    margin-top: 20px;
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    background-color: #514094;
+    color: white;
+    border: none;
+}
+.tips-section .btn:hover {
+    background-color: #3a2e6e;
+}
+
+footer {
+    background-color: #514094;
+    margin-top: auto;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+footer a:hover {
+    text-decoration: underline;
+}

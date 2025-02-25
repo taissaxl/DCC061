@@ -85,6 +85,12 @@ public class HomeController {
         return "produtos"; // Retorna a view produtos.html
     }
 
+    // Rota para a página de dicas
+    @RequestMapping("/dicas")
+    public String dicasPage(Model model) {
+        return "dicas"; // Retorna a view dicas.html
+    }
+
     @GetMapping("/user")
     public String userPage(Model model, Principal principal) {
         // Obtém o nome do usuário autenticado

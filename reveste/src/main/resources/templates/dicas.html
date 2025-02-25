@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/dicas.css}">
+    <title>Home - ReVeste</title>
+</head>
+<body>
+    <div th:replace="~{header-navbar}"></div>
+
+    <div class="tips-section">
+        <div class="container">
+            <h2><i class="bi bi-lightbulb"></i> Dicas Sustentáveis</h2>
+            <p>
+                Descubra como prolongar a vida útil das suas roupas com cuidados simples. Aprenda a lavar, armazenar e reparar suas peças favoritas de forma sustentável. Pequenas ações podem gerar grandes impactos!
+            </p>
+            <a href="/dicas" class="btn">Ver Dicas</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 ReVeste. Todos os direitos reservados.</p>
+        <a href="#">Política de Privacidade</a> | <a href="#">Termos de Serviço</a>
+        <div class="social-icons">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+        </div>
+    </footer>
+</body>
+</html>
