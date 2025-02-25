@@ -36,6 +36,43 @@ body {
     background-color: #3a2e6e;
 }
 
+
+.tips-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.tip-item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 300px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.tip-item:hover {
+    transform: scale(1.05);
+}
+
+.tip-item i {
+    font-size: 24px;
+    color: #4c2a85;
+}
+
+.tip-item p {
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+}
+
 footer {
     background-color: #514094;
     margin-top: auto;
