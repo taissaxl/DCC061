@@ -82,7 +82,7 @@ public class HomeController {
         // Adiciona a lista de produtos ao modelo
         model.addAttribute("products", products);
 
-        return "product"; 
+        return "product";
     }
 
     @GetMapping("/user")
@@ -183,5 +183,10 @@ public class HomeController {
     @GetMapping("/logout")
     public String logout(){
         return "redirect:/login";
+    }
+
+    @GetMapping("/order-confirmation")
+    public String orderConfirmation() {
+        return "order-confirmation"; 
     }
 }
