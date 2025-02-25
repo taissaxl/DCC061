@@ -11,9 +11,9 @@ html, body {
     justify-content: center;
     align-items: center;
 }
-.check-mark {
-    width: 150px;
-    height: 150px;
+.confirmarion-icon {
+    width: 250px;
+    height: 250px;
 }
 footer {
     background-color: #514094;
