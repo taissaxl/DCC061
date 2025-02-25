@@ -61,6 +61,7 @@ body {
     border-radius: 4px;
     font-size: 1rem;
     cursor: pointer;
+    margin-top: 20px;
 }
 .add-to-cart:hover {
     background-color: #3a2e6e;
