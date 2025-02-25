@@ -82,7 +82,7 @@ public class HomeController {
         // Adiciona a lista de produtos ao modelo
         model.addAttribute("products", products);
 
-        return "produtos"; // Retorna a view produtos.html
+        return "product"; 
     }
 
     @GetMapping("/user")
