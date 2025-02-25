@@ -86,6 +86,24 @@ body {
 .shipping button:hover {
     background-color: #3a2e6e;
 }
+.btn-buy {
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 10px 0;
+    font-size: 1.2rem;
+    background-color: #94B051 !important; 
+    color: white !important;
+    font-weight: bolder !important;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+.btn-buy:hover {
+    background-color: #7a9342 !important; 
+}
 footer {
     background-color: #514094;
     margin-top: auto;
