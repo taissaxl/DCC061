@@ -189,4 +189,9 @@ public class HomeController {
     public String orderConfirmation() {
         return "order-confirmation"; 
     }
+
+    @GetMapping("/sustainability")
+    public String sustainabilityPage() {
+        return "sustainability";
+    }
 }
