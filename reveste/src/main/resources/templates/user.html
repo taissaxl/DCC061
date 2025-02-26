@@ -16,13 +16,18 @@
             <div class="user-icon">
                 <i class="bi bi-person-circle"></i>
             </div>
-            <button class="edit-button" onclick="editarInformacoes()">
+            <button class="edit-button" onclick="window.location.href='/edit-user'">
                 <i class="bi bi-pencil"></i>
             </button>
-            <h2>Olá <span th:text="${user.name}"></span></h2>
-            <p><strong>E-mail:</strong> <span th:text="${user.email}"></span></p>
-            <p><strong>Login:</strong> <span th:text="${user.username}"></span></p>
-            <p><strong>Endereço:</strong> <span th:text="${userAddress}">Rua das Flores, 185</span></p>
+            <div th:if="${user}">
+                <h2>Olá <span th:text="${user.name}"></span></h2>
+                <p><strong>E-mail:</strong> <span th:text="${user.email}"></span></p>
+                <p><strong>Login:</strong> <span th:text="${user.username}"></span></p>
+                <p><strong>Endereço:</strong> <span th:text="${user.endereco}"></span></p>
+            </div>
+            <div th:unless="${user}">
+                <p>Usuário não encontrado.</p>
+            </div>
         </div>
 
         <div class="user-menu">

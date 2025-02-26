@@ -3,6 +3,9 @@ package eng.software.reveste;
 import java.security.Principal;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import javax.validation.Valid;
 
 import eng.software.reveste.model.Product;
 import eng.software.reveste.model.User;
@@ -93,16 +95,25 @@ public class HomeController {
 
     @GetMapping("/user")
     public String userPage(Model model, Principal principal) {
-        // Obtém o nome do usuário autenticado
-        String username = principal.getName();
+        try {
+            // Obtém o nome do usuário autenticado
+            String username = principal.getName();
 
-        // Busca o usuário no banco de dados
-        User user = userRepository.findByUsername(username);
+            // Busca o usuário no banco de dados
+            Optional<User> userOptional = userRepository.findByUsername(username);
 
-        // Adiciona ao modelo
-        model.addAttribute("user", user);
+            if (userOptional.isEmpty()) {
+                throw new RuntimeException("Usuário não encontrado!");
+            }
 
-        return "user"; // Retorna a view user.html
+            // Adiciona o usuário ao modelo
+            model.addAttribute("user", userOptional.get());
+
+            return "user"; // Retorna a view user.html
+        } catch (Exception e) {
+            e.printStackTrace(); // Log do erro no console
+            throw new RuntimeException("Erro ao carregar a página do usuário: " + e.getMessage());
+        }
     }
 
     // Rota para a página do carrinho de compras
@@ -128,17 +139,14 @@ public class HomeController {
     }
 
     @PostMapping("/register")
-    public ModelAndView registerUser2(User user, BindingResult binding) {
+    public ModelAndView registerUser2(@ModelAttribute User user, BindingResult binding) {
         ModelAndView mv = new ModelAndView();
-
         if (binding.hasErrors()) {
             mv.setViewName("register");
             return mv;
         }
-        mv.setViewName("redirect:/login");
-        mv.addObject("user", user);
         userRepository.save(user);
-
+        mv.setViewName("redirect:/login");
         return mv;
     }
 
@@ -187,17 +195,72 @@ public class HomeController {
     }
 
     @GetMapping("/logout")
-    public String logout(){
+    public String logout() {
         return "redirect:/login";
     }
 
     @GetMapping("/order-confirmation")
     public String orderConfirmation() {
-        return "order-confirmation"; 
+        return "order-confirmation";
     }
 
     @GetMapping("/sustainability")
     public String sustainabilityPage() {
         return "sustainability";
+    }
+
+    @GetMapping("/edit-user")
+    public String editUserPage(Model model, Principal principal) {
+        // Obtém o nome do usuário autenticado
+        String username = principal.getName();
+
+        // Busca o usuário no banco de dados
+        Optional<User> userOptional = userRepository.findByUsername(username);
+
+        if (userOptional.isEmpty()) {
+            throw new RuntimeException("Usuário não encontrado!");
+        }
+
+        // Adiciona o usuário ao modelo
+        model.addAttribute("user", userOptional.get());
+
+        return "edit-user"; // Retorna a view edit-user.html
+    }
+
+    @PostMapping("/update-user")
+    public String updateUser(@ModelAttribute User updatedUser, Principal principal) {
+        try {
+            // Obtém o nome do usuário autenticado
+            String username = principal.getName();
+
+            // Busca o usuário no banco de dados
+            Optional<User> userOptional = userRepository.findByUsername(username);
+
+            if (userOptional.isEmpty()) {
+                throw new RuntimeException("Usuário não encontrado!");
+            }
+
+            // Atualiza os dados do usuário
+            User user = userOptional.get();
+            user.setName(updatedUser.getName());
+            user.setEmail(updatedUser.getEmail());
+            user.setUsername(updatedUser.getUsername());
+            user.setPassword(updatedUser.getPassword());
+            user.setCep(updatedUser.getCep());
+            user.setEndereco(updatedUser.getEndereco());
+            user.setNumero(updatedUser.getNumero());
+            user.setComplemento(updatedUser.getComplemento());
+            user.setCidade(updatedUser.getCidade());
+            user.setEstado(updatedUser.getEstado());
+
+            // Salva as alterações no banco de dados
+            userRepository.save(user);
+
+            // Redireciona para a página do usuário
+            return "redirect:/login";
+        } catch (Exception e) {
+            e.printStackTrace(); // Log do erro no console
+            throw new RuntimeException("Erro ao atualizar o usuário: " + e.getMessage());
+        }
     }
 }
