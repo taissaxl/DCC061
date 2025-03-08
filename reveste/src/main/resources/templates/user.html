@@ -23,7 +23,6 @@
                 <h2>Olá <span th:text="${user.name}"></span></h2>
                 <p><strong>E-mail:</strong> <span th:text="${user.email}"></span></p>
                 <p><strong>Login:</strong> <span th:text="${user.username}"></span></p>
-                <p><strong>Endereço:</strong> <span th:text="${user.endereco}"></span></p>
             </div>
             <div th:unless="${user}">
                 <p>Usuário não encontrado.</p>

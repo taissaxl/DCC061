@@ -31,13 +31,16 @@
                         <option>Único</option>
                     </select>
                 </div>
+
                 <div class="shipping">
                     <label for="cep">Consulte o frete</label>
                     <div>
                         <input type="text" id="cep" placeholder="Digite o seu CEP">
-                        <button>OK</button>
+                        <button id="calcularFrete">OK</button>
                     </div>
+                    <p id="freteResult" class="text-success"></p>
                 </div>
+
                 <div class="buy-button-container">
                     <button class="add-to-cart">Adicionar à sacola</button>
                     <a href="/checkout" class="btn btn-buy">Comprar</a>
@@ -55,5 +58,29 @@
             <a href="#"><i class="bi bi-twitter"></i></a>
         </div>
     </footer>
+
+    <script>
+        document.getElementById("calcularFrete").addEventListener("click", function() {
+            let cep = document.getElementById("cep").value;
+            let freteResult = document.getElementById("freteResult");
+
+            // Expressão regular para validar CEP (XXXXX-XXX ou XXXXXXXX)
+            let cepValido = /^[0-9]{5}-?[0-9]{3}$/;
+
+            if (!cepValido.test(cep)) {
+                freteResult.innerHTML = "CEP inválido! Digite um CEP no formato correto.";
+                freteResult.classList.add("text-danger");
+                return;
+            }
+
+            freteResult.classList.remove("text-danger");
+
+            // Simulação de cálculo de frete (pode ser alterado para API real)
+            let valorFrete = (Math.random() * (30 - 10) + 10).toFixed(2);
+            let prazoEntrega = Math.floor(Math.random() * (10 - 3) + 3);
+
+            freteResult.innerHTML = `Frete: R$ ${valorFrete} - Entrega em ${prazoEntrega} dias úteis.`;
+        });
+    </script>
 </body>
 </html>

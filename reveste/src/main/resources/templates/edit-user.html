@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/css/user.css}">
+
     <title>Editar Perfil - ReVeste</title>
 </head>
 <body>
@@ -29,36 +31,12 @@
                 <label for="password" class="form-label">Senha</label>
                 <input type="password" class="form-control" id="password" th:field="*{password}" required>
             </div>
-            <div class="mb-3">
-                <label for="cep" class="form-label">CEP</label>
-                <input type="text" class="form-control" id="cep" th:field="*{cep}" required>
-            </div>
-            <div class="mb-3">
-                <label for="endereco" class="form-label">Endereço</label>
-                <input type="text" class="form-control" id="endereco" th:field="*{endereco}" required>
-            </div>
-            <div class="mb-3">
-                <label for="numero" class="form-label">Número</label>
-                <input type="text" class="form-control" id="numero" th:field="*{numero}" required>
-            </div>
-            <div class="mb-3">
-                <label for="complemento" class="form-label">Complemento</label>
-                <input type="text" class="form-control" id="complemento" th:field="*{complemento}">
-            </div>
-            <div class="mb-3">
-                <label for="cidade" class="form-label">Cidade</label>
-                <input type="text" class="form-control" id="cidade" th:field="*{cidade}" required>
-            </div>
-            <div class="mb-3">
-                <label for="estado" class="form-label">Estado</label>
-                <input type="text" class="form-control" id="estado" th:field="*{estado}" required>
-            </div>
             <button type="submit" class="btn btn-primary">Salvar Alterações</button>
             <a href="/user" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 
-    <footer class="mt-5">
+    <footer>
         <p>&copy; 2025 ReVeste. Todos os direitos reservados.</p>
         <a href="#">Política de Privacidade</a> | <a href="#">Termos de Serviço</a>
     </footer>

@@ -50,6 +50,28 @@ public class HomeController {
         return "login.html";
     }
 
+    @GetMapping("/login")
+    public String login(@RequestParam(value = "error", required = false) String error, Model model) {
+        if (error != null) {
+            model.addAttribute("loginError", "Usuário ou senha inválidos.");
+        }
+        return "login";
+    }
+
+     // Usuário e senha fixos para simular autenticação
+     private static final String USERNAME = "admin";
+     private static final String PASSWORD = "1234";
+     
+    @PostMapping("/login")
+    public String processLogin(@RequestParam String username, @RequestParam String password, Model model) {
+        if (USERNAME.equals(username) && PASSWORD.equals(password)) {
+            return "redirect:/home"; // Redireciona para a página inicial se o login for correto
+        } else {
+            model.addAttribute("loginError", "Usuário ou senha inválidos.");
+            return "login"; // Retorna para a página de login com mensagem de erro
+        }
+    }
+
     // Rota para a página de menu (usuário)
     @GetMapping("/menu")
     public ModelAndView getMethodName(@RequestParam String name) {
