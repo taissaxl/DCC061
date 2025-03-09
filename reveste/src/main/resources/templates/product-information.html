@@ -18,8 +18,9 @@
                 <img th:src="${product.imageUrl}" alt="Imagem do Produto" class="product-image">
             </div>
             <div class="product-details">
- 
                 <h1 class="product-title" th:text="${product.name}"></h1>
+
+                <p class="product-description" th:text="${product.description}"></p>
 
                 <p class="product-price" th:text="'R$ ' + ${#numbers.formatDecimal(product.price, 1, 2)}"></p>
 
@@ -82,22 +83,19 @@
             freteResult.innerHTML = `Frete: R$ ${valorFrete} - Entrega em ${prazoEntrega} dias úteis.`;
         });
 
-        
-            document.querySelector(".btn-buy").addEventListener("click", function(event) {
-                event.preventDefault();
-        
-                let product = {
-                    name: document.querySelector(".product-title").innerText,
-                    price: parseFloat(document.querySelector(".product-price").innerText.replace("R$ ", "").replace(",", ".")),
-                    imageUrl: document.querySelector(".product-image").src
-                };
-        
-                localStorage.setItem("selectedProduct", JSON.stringify(product));
-        
-                window.location.href = "/checkout";
-            });
-        
-        
+        document.querySelector(".btn-buy").addEventListener("click", function(event) {
+            event.preventDefault();
+
+            let product = {
+                name: document.querySelector(".product-title").innerText,
+                price: parseFloat(document.querySelector(".product-price").innerText.replace("R$ ", "").replace(",", ".")),
+                imageUrl: document.querySelector(".product-image").src
+            };
+
+            localStorage.setItem("selectedProduct", JSON.stringify(product));
+
+            window.location.href = "/checkout";
+        });
     </script>
 </body>
 </html>

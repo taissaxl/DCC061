@@ -105,6 +105,12 @@ body {
 .btn-buy:hover {
     background-color: #7a9342 !important; 
 }
+.product-description {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
 footer {
     background-color: #514094;
     margin-top: auto;
