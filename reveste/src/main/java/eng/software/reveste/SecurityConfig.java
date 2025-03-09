@@ -12,18 +12,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/user").authenticated() // Apenas usuários logados podem acessar
-                        .anyRequest().permitAll() // Todo o restante está liberado
-                )
-                .formLogin(form -> form
-                        .loginPage("/login") // Define a página de login
-                        .defaultSuccessUrl("/user", true) // Para onde o usuário vai após login
-                        .permitAll())
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/home") // Após logout, volta para a página inicial
-                        .permitAll());
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/user").authenticated() // Exige autenticação para /user
+                .anyRequest().permitAll() // Todo o restante está liberado
+            )
+            .formLogin(form -> form
+                .loginPage("/login") // Define a página de login
+                .defaultSuccessUrl("/user", true) // Para onde o usuário vai após login
+                .permitAll()
+            )
+            .logout(logout -> logout
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/home") // Após logout, volta para a página inicial
+                .permitAll()
+            );
 
         return http.build();
     }
@@ -33,5 +35,4 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
-
 }

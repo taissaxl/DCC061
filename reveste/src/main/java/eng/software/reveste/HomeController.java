@@ -41,7 +41,7 @@ public class HomeController {
     // Rota padrão (redireciona para /home)
     @RequestMapping("/")
     public String home() {
-        return "redirect:/login"; // Redireciona para a página inicial
+        return "redirect:/login"; // Redireciona para a página de login
     }
 
     // Rota para a página de login
@@ -118,6 +118,11 @@ public class HomeController {
     @GetMapping("/user")
     public String userPage(Model model, Principal principal) {
         try {
+            // Verifica se o usuário está autenticado
+            if (principal == null) {
+                return "redirect:/login"; // Redireciona para a página de login
+            }
+
             // Obtém o nome do usuário autenticado
             String username = principal.getName();
 

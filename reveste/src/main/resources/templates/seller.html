@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/css/seller.css}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js para gráficos -->
+    <title>Área do Vendedor</title>
+</head>
+<body>
+    <!-- Inclui o header e a navbar -->
+    <div th:replace="~{header-navbar}"></div>
+
+    <div class="container">
+        <h2 class="text-center mt-4">Área do Vendedor</h2>
+
+        <!-- Seção de Gerenciamento de Produtos -->
+        <div class="product-management">
+            <h3>Gerenciar Produtos</h3>
+
+            <!-- Lista de Produtos do Vendedor -->
+            <div class="product-carousel">
+                <button class="carousel-button prev" onclick="scrollProducts(-1)">&#10094;</button>
+                <div class="product-list">
+                    <div th:each="product : ${sellerProducts}" class="product-card">
+                        <img th:src="${product.imageUrl}" alt="Imagem do Produto" class="product-image">
+                        <h5 th:text="${product.name}"></h5>
+                        <p th:text="'R$ ' + ${#numbers.formatDecimal(product.price, 1, 2)}"></p>
+                        <p th:text="${product.description}"></p>
+                    </div>
+                </div>
+                <button class="carousel-button next" onclick="scrollProducts(1)">&#10095;</button>
+            </div>
+
+            <!-- Botões de Adicionar e Remover Produto -->
+            <div class="product-actions text-end mt-4">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                    <i class="bi bi-plus"></i> Adicionar Produto
+                </button>
+                <button class="btn btn-danger" onclick="removeSelectedProduct()">
+                    <i class="bi bi-trash"></i> Remover Produto
+                </button>
+            </div>
+        </div>
+
+        <!-- Seção de Relatório de Vendas -->
+        <div class="sales-report mt-5">
+            <h3>Relatório de Vendas</h3>
+            <canvas id="salesChart"></canvas> <!-- Gráfico de vendas -->
+        </div>
+    </div>
+
+    <!-- Modal para Adicionar Produto -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProductModalLabel">Adicionar Novo Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addProductForm">
+                        <div class="mb-3">
+                            <label for="productName" class="form-label">Nome do Produto</label>
+                            <input type="text" class="form-control" id="productName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productDescription" class="form-label">Descrição</label>
+                            <textarea class="form-control" id="productDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productPrice" class="form-label">Preço</label>
+                            <input type="number" step="0.01" class="form-control" id="productPrice" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productImageUrl" class="form-label">URL da Imagem</label>
+                            <input type="url" class="form-control" id="productImageUrl" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="addProduct()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 ReVeste. Todos os direitos reservados.</p>
+        <a href="#">Política de Privacidade</a> | <a href="#">Termos de Serviço</a>
+        <div class="social-icons">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Função para adicionar um novo produto
+        function addProduct() {
+            const product = {
+                name: document.getElementById('productName').value,
+                description: document.getElementById('productDescription').value,
+                price: parseFloat(document.getElementById('productPrice').value),
+                imageUrl: document.getElementById('productImageUrl').value
+            };
+
+            // Aqui você pode enviar os dados para o backend (exemplo: fetch API)
+            console.log('Produto adicionado:', product);
+            alert('Produto adicionado com sucesso!');
+            location.reload(); // Recarrega a página para atualizar a lista
+        }
+
+        // Função para remover o produto selecionado
+        function removeSelectedProduct() {
+            const selectedProduct = document.querySelector('.product-card.selected');
+            if (!selectedProduct) {
+                alert('Selecione um produto para remover.');
+                return;
+            }
+
+            if (confirm('Tem certeza que deseja remover este produto?')) {
+                // Aqui você pode enviar uma requisição para remover o produto
+                console.log('Produto removido:', selectedProduct);
+                alert('Produto removido com sucesso!');
+                location.reload(); // Recarrega a página para atualizar a lista
+            }
+        }
+
+        // Função para rolar os produtos no carrossel
+        function scrollProducts(direction) {
+            const productList = document.querySelector('.product-list');
+            const scrollAmount = 300; // Quantidade de rolagem
+            productList.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+
+        // Adiciona evento de clique para selecionar/desselecionar produtos
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('selected');
+            });
+        });
+
+        // Gráfico de vendas (dados fictícios)
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        const salesChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+                datasets: [{
+                    label: 'Valor Total das Vendas (R$)',
+                    data: [1500, 2000, 1800, 2200, 2500, 3000],
+                    backgroundColor: 'rgba(81, 64, 148, 0.5)',
+                    borderColor: 'rgba(81, 64, 148, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
