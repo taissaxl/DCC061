@@ -81,6 +81,23 @@
 
             freteResult.innerHTML = `Frete: R$ ${valorFrete} - Entrega em ${prazoEntrega} dias úteis.`;
         });
+
+        
+            document.querySelector(".btn-buy").addEventListener("click", function(event) {
+                event.preventDefault();
+        
+                let product = {
+                    name: document.querySelector(".product-title").innerText,
+                    price: parseFloat(document.querySelector(".product-price").innerText.replace("R$ ", "").replace(",", ".")),
+                    imageUrl: document.querySelector(".product-image").src
+                };
+        
+                localStorage.setItem("selectedProduct", JSON.stringify(product));
+        
+                window.location.href = "/checkout";
+            });
+        
+        
     </script>
 </body>
 </html>

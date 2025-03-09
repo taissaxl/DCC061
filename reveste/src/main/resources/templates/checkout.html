@@ -17,7 +17,7 @@
             <div class="col-md-8">
                 <div class="checkout-section">
                     <h3><i class="bi bi-geo-alt"></i> Endereço de Entrega</h3>
-                    <form th:action="@{/checkout}" th:object="${checkoutDTO}" method="post">
+                    <form th:action="@{/checkout}" th:object="${checkoutDTO}" method="post" id="payment-form">
                         <div class="form-group">
                             <label for="nome">Nome Completo</label>
                             <input type="text" id="nome" th:field="*{nome}" class="form-control" required>
@@ -77,46 +77,53 @@
                         </div>
                         <div class="form-group">
                             <label for="cartao">Número do Cartão</label>
-                            <input type="text" id="cartao" th:field="*{cartao}" class="form-control" required>
+                            <input type="text" id="cartao" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="validade">Validade (MM/AA)</label>
-                            <input type="text" id="validade" th:field="*{validade}" class="form-control" required>
+                            <input type="text" id="validade" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="cvv">CVV</label>
-                            <input type="text" id="cvv" th:field="*{cvv}" class="form-control" required>
+                            <input type="text" id="cvv" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="titular">Nome do Titular</label>
-                            <input type="text" id="titular" th:field="*{titular}" class="form-control" required>
+                            <input type="text" id="titular" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="parcelas">Parcelamento</label>
-                            <select id="parcelas" th:field="*{parcelas}" class="form-control" required>
-                                <option value="1">1x sem juros</option>
-                                <option value="2">2x sem juros</option>
+                            <select id="parcelas" class="form-control" required>
+                                <option value="1x sem juros">1x sem juros</option>
+                                <option value="2x sem juros">2x sem juros</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Confirmar Compra</button>
+
                     </form>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="checkout-summary">
                     <h3>Resumo do Pedido</h3>
+
+                    <div class="product-item">
+                        <img id="product-image" src="" alt="Produto" style="width: 100px; height: auto; max-height: 100px; object-fit: cover; border-radius: 8px;">
+                        <h4 id="product-name"></h4>
+                    </div>
                     <div class="summary-item">
-                        <p>Subtotal:</p>
-                        <p>R$ 130,00</p>
+                        <p>Preço:</p>
+                        <span id="product-price"></span>
                     </div>
                     <div class="summary-item">
                         <p>Frete:</p>
-                        <p>R$ 15,00</p>
+                        <p>R$ 15.00</p>
                     </div>
                     <div class="summary-item total">
                         <p><strong>Total:</strong></p>
-                        <p><strong>R$ 145,00</strong></p>
+                        <p><strong id="total-price"></strong></p>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -126,5 +133,23 @@
         <p>&copy; 2025 ReVeste. Todos os direitos reservados.</p>
         <a href="#">Política de Privacidade</a> | <a href="#">Termos de Serviço</a>
     </footer>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let storedProduct = localStorage.getItem("selectedProduct");
+
+        if (storedProduct) {
+            let product = JSON.parse(storedProduct);
+            
+            document.getElementById("product-name").innerText = product.name;
+            document.getElementById("product-price").innerText = `R$ ${product.price.toFixed(2)}`;
+            document.getElementById("product-image").src = product.imageUrl;
+            document.getElementById("total-price").innerText = `R$ ${(product.price + 15).toFixed(2)}`; // Supondo frete fixo
+        }
+    });
+
+    
+</script>
+
+    
 </body>
 </html>
